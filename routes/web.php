@@ -1,10 +1,17 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
+use App\Http\Controllers\CodeController;
+
+use App\Http\Controllers\SignedRouteController;
+
 use App\Http\Controllers\Admin\{
     ProfileController,
     MailSettingController,
+   
 };
+
 
 /*
 |--------------------------------------------------------------------------
@@ -65,3 +72,14 @@ Route::namespace('App\Http\Controllers\Admin')->name('admin.')->prefix('admin')
         Route::get('/mail',[MailSettingController::class,'index'])->name('mail.index');
         Route::put('/mail-update/{mailsetting}',[MailSettingController::class,'update'])->name('mail.update');
 });
+
+
+
+
+Route::get('/firmada', [SignedRouteController::class, 'SignedRoute'])->name('firmada');
+
+Route::get('/verificacion', function () {
+    return view('verificacion');
+})->name('verificacion');
+
+Route::post('/validacion', [CodeController::class, 'generarWeb'])->name('validacion');

@@ -7,18 +7,18 @@
                   @csrf
                   @method('post')
                 <div class="flex flex-col space-y-2">
-                  <label for="role_name" class="text-gray-700 select-none font-medium">Permission Name</label>
+                  <label for="role_name" class="text-gray-700 select-none font-medium">Nombre del permiso</label>
                   <input
                     id="role_name"
                     type="text"
                     name="name"
                     value="{{ old('name') }}"
-                    placeholder="Enter permission"
+                    placeholder="Escribe el permiso"
                     class="px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-200"
                   />
                 </div>
                 <div class="text-center mt-16">
-                  <button type="submit" class="bg-blue-500 text-white font-bold px-5 py-1 rounded focus:outline-none shadow hover:bg-blue-500 transition-colors ">Submit</button>
+                  <button type="submit" class="bg-blue-500 text-white font-bold px-5 py-1 rounded focus:outline-none shadow hover:bg-blue-500 transition-colors ">Enviar</button>
                 </div>
               </div>
             </div>

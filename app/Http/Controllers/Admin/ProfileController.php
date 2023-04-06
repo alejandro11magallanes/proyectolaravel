@@ -61,6 +61,6 @@ class ProfileController extends Controller
 
         $user->update($validated);
 
-        return redirect()->back()->withSuccess('User updated !!!');
+        return redirect()->back()->withSuccess('Usuario Actualizado.');
     }
 }

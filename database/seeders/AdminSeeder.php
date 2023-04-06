@@ -19,20 +19,26 @@ class AdminSeeder extends Seeder
     {
         $admin = User::create([
             'name'=>'Admin',
-            'email'=>'admin@admin.com',
-            'password'=>bcrypt('password'),
-            'profile' => 'user.avif'
+            'email'=>'20170023@uttcampus.edu.mx',
+            'password'=>bcrypt('123'),
+            'profile' => 'perfil.png'
         ]);
 
-        $writer = User::create([
-            'name'=>'writer',
-            'email'=>'writer@writer.com',
-            'password'=>bcrypt('password')
+        $supervisor = User::create([
+            'name'=>'Supervisor',
+            'email'=>'alejandroguzman23221@gmail.com',
+            'password'=>bcrypt('123')
         ]);
-
+        
+        $normal = User::create([
+            'name'=>'miguel',
+            'email'=>'miguelagl0927@gmail.com',
+            'password'=>bcrypt('123')
+        ]);
 
         $admin_role = Role::create(['name' => 'admin']);
-        $writer_role = Role::create(['name' => 'writer']);
+        $supervisor_role = Role::create(['name' => 'supervisor']);
+        $normal_role = Role::create(['name' => 'normal']);
 
         $permission = Permission::create(['name' => 'Post access']);
         $permission = Permission::create(['name' => 'Post edit']);
@@ -60,8 +66,8 @@ class AdminSeeder extends Seeder
 
 
         $admin->assignRole($admin_role);
-        $writer->assignRole($writer_role);
-
+        $supervisor->assignRole($supervisor_role);
+        $normal->assignRole($normal_role);
 
         $admin_role->givePermissionTo(Permission::all());
     }

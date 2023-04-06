@@ -68,7 +68,7 @@ class UserController extends Controller
             'password'=> bcrypt($request->password),
         ]);
         $user->syncRoles($request->roles);
-        return redirect()->back()->withSuccess('User created !!!');
+        return redirect()->back()->withSuccess('Usuario Creado!');
     }
 
     /**
@@ -119,7 +119,7 @@ class UserController extends Controller
         $user->update($validated);
 
         $user->syncRoles($request->roles);
-        return redirect()->back()->withSuccess('User updated !!!');
+        return redirect()->back()->withSuccess('Usuario Actualizado');
     }
 
     /**
@@ -131,6 +131,6 @@ class UserController extends Controller
     public function destroy(Role $role)
     {
         $role->delete();
-        return redirect()->back()->withSuccess('Role deleted !!!');
+        return redirect()->back()->withSuccess('Rol eliminado');
     }
 }
