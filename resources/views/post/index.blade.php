@@ -12,26 +12,29 @@
             <thead>
               <tr>
                 <th class="py-4 px-6 bg-grey-lightest font-bold text-sm text-grey-dark border-b border-grey-light">Nombre del producto</th>
-                <th class="py-4 px-6 bg-grey-lightest font-bold text-sm text-grey-dark border-b border-grey-light w-2/12">Estatus</th>
+                <th class="py-4 px-6 bg-grey-lightest font-bold text-sm text-grey-dark border-b border-grey-light w-2/12">Precio</th>
+                <th class="py-4 px-6 bg-grey-lightest font-bold text-sm text-grey-dark border-b border-grey-light w-2/12">Marca</th>
+                <th class="py-4 px-6 bg-grey-lightest font-bold text-sm text-grey-dark border-b border-grey-light w-2/12">Imagen</th>
                 <th class="py-4 px-6 bg-grey-lightest font-bold text-sm text-grey-dark border-b border-grey-light text-right w-2/12">Acciones</th>
               </tr>
             </thead>
             <tbody>
               @can('Post access')
                 @foreach($posts as $post)
+                @if($post->activado)
                 <tr class="hover:bg-grey-lighter">
                   <td class="py-4 px-6 border-b border-grey-light">{{ $post->title }}</td>
+                  <td class="py-4 px-6 border-b border-grey-light">{{ $post->precio }}</td>
+                  <td class="py-4 px-6 border-b border-grey-light">{{ $post->marca }}</td>
                   <td class="py-4 px-6 border-b border-grey-light">
-                      @if($post->publish)
-                      <span class="text-white inline-flex items-center justify-center px-2 py-1 mr-2 text-xs font-bold leading-none text-white bg-green-500 rounded-full">Publish</span>
-                      @else
-                      <span class="inline-flex items-center justify-center px-2 py-1 mr-2 text-xs font-bold leading-none text-white bg-gray-500 rounded-full">Draft</span>
-                      @endif
+                  <img src="{{Storage::disk('do')->url($post->imagen_url)}}"  alt="...">
                   </td>
+
+                
                   <td class="py-4 px-6 border-b border-grey-light text-right">
 
                     @can('Post edit')
-                    <a href="{{route('admin.posts.edit',$post->id)}}" class="text-grey-lighter font-bold py-1 px-3 rounded text-xs bg-green hover:bg-green-dark text-blue-400">Editar</a>
+                    <a href="{{route('admin.verificar',$post->id)}}" class="text-grey-lighter font-bold py-1 px-3 rounded text-xs bg-green hover:bg-green-dark text-blue-400">Editar</a>
                     @endcan
 
                     @can('Post delete')
@@ -43,6 +46,7 @@
                     @endcan
                   </td>
                 </tr>
+                @endif
                 @endforeach
                 @endcan
             </tbody>

@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -7,6 +6,7 @@ use App\Models\Post;
 use App\Models\Verificacion;
 use Auth;
 use Illuminate\Support\Facades\Storage;
+
 class PostController extends Controller
 {
     /**
@@ -16,10 +16,10 @@ class PostController extends Controller
      */
     function __construct()
     {
-        $this->middleware('role_or_permission:Post access|Post create|Post edit|Post delete', ['only' => ['index','show']]);
-        $this->middleware('role_or_permission:Post create', ['only' => ['create','store']]);
-        $this->middleware('role_or_permission:Post edit', ['only' => ['edit','update']]);
-        $this->middleware('role_or_permission:Post delete', ['only' => ['destroy']]);
+        $this->middleware('role_or_permission:Codes access|Post create|Post edit|Post delete', ['only' => ['index','show']]);
+        // $this->middleware('role_or_permission:Post create', ['only' => ['create','store']]);
+        // $this->middleware('role_or_permission:Post edit', ['only' => ['edit','update']]);
+        // $this->middleware('role_or_permission:Post delete', ['only' => ['destroy']]);
     }
 
     /**
@@ -43,11 +43,9 @@ class PostController extends Controller
     {
         return view('post.new');
     }
-    public function verificar(Request $request)
+    public function verificar()
     {
-        $url = $request->getRequestUri();
-        $id = substr($url,strpos($url,"?")+1);
-      return view('post.verificacion',['id'=>$id]);
+       return view('post.verificacion');
     }
 
 
@@ -105,10 +103,8 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Post $post, Request $request)
+    public function edit(Post $post)
     {
-       $code = $request->codigo;
-
        return view('post.edit',['post' => $post]);
     }
 

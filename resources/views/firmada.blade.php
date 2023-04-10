@@ -420,7 +420,7 @@ border:2px solid #006DB4;
 text-transform: uppercase;
 text-align: center;
 ">  
-                          <font face="Century Gothic, Verdana, Arial, sans-serif" style="font-size: 15px; font-weight: 700"> <a class="hover-me-1" href="{{URL::temporarySignedRoute('firmada',now()->addMinutes(1))}}" target="_blank" style="color:#006DB4; text-decoration:none !important; display:inline-block; width:100%; line-height:45px;">Verificar</a> </font>
+                          <font face="Century Gothic, Verdana, Arial, sans-serif" style="font-size: 15px; font-weight: 700"> <a class="hover-me-1" href="{{URL::temporarySignedRoute('firmada',now()->addMinutes(5))}}" target="_blank" style="color:#006DB4; text-decoration:none !important; display:inline-block; width:100%; line-height:45px;">Verificar</a> </font>
                         </td>
                       </tr>
                     </tbody>

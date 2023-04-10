@@ -9,9 +9,10 @@ use App\Http\Controllers\SignedRouteController;
 use App\Http\Controllers\Admin\{
     ProfileController,
     MailSettingController,
-   
+    PostController,
+    VerificationController,
 };
-
+use App\Http\Controllers\CodeUpdateController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,7 +46,7 @@ Route::get('/test-mail',function(){
 
 Route::get('/dashboard', function () {
     return view('front.dashboard');
-})->middleware(['front'])->name('dashboard');
+})->middleware(['front','codigomidelware'])->name('dashboard');
 
 
 require __DIR__.'/front_auth.php';
@@ -53,7 +54,7 @@ require __DIR__.'/front_auth.php';
 // Admin routes
 Route::get('/admin/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth'])->name('admin.dashboard');
+})->middleware(['auth','codigomidelware'])->name('admin.dashboard');
 
 require __DIR__.'/auth.php';
 
@@ -66,6 +67,9 @@ Route::namespace('App\Http\Controllers\Admin')->name('admin.')->prefix('admin')
         Route::resource('permissions','PermissionController');
         Route::resource('users','UserController');
         Route::resource('posts','PostController');
+        Route::resource('codes','VerificationController');
+        Route::get('/verificar',[PostController::class, 'verificar'])->name('verificar');
+        Route::post('/verificar',[PostController::class, 'guardarPeticion'])->name('pedirc');
 
         Route::get('/profile',[ProfileController::class,'index'])->name('profile');
         Route::put('/profile-update',[ProfileController::class,'update'])->name('profile.update');
@@ -77,9 +81,12 @@ Route::namespace('App\Http\Controllers\Admin')->name('admin.')->prefix('admin')
 
 
 Route::get('/firmada', [SignedRouteController::class, 'SignedRoute'])->name('firmada');
+Route::get('/codidgoupdate', [CodeUpdateController::class, 'Codigo'])->name('codidgoupdate');
 
 Route::get('/verificacion', function () {
     return view('verificacion');
 })->name('verificacion');
+
+
 
 Route::post('/validacion', [CodeController::class, 'generarWeb'])->name('validacion');

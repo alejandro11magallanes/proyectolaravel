@@ -29,6 +29,12 @@ class AdminSeeder extends Seeder
             'email'=>'alejandroguzman23221@gmail.com',
             'password'=>bcrypt('123')
         ]);
+
+        $supervisor = User::create([
+            'name'=>'Supervisor1',
+            'email'=>'alejandrofirst21@outlook.com',
+            'password'=>bcrypt('123')
+        ]);
         
         $normal = User::create([
             'name'=>'miguel',
@@ -63,6 +69,8 @@ class AdminSeeder extends Seeder
         $permission = Permission::create(['name' => 'Mail access']);
         $permission = Permission::create(['name' => 'Mail edit']);
 
+        $permission = Permission::create(['name' => 'Codes access']);
+
 
 
         $admin->assignRole($admin_role);
@@ -70,5 +78,8 @@ class AdminSeeder extends Seeder
         $normal->assignRole($normal_role);
 
         $admin_role->givePermissionTo(Permission::all());
+        $supervisor_role->givePermissionTo(Permission::all());
+
+        $normal_role->givePermissionTo('Post access','Post edit','Post create','Post delete');
     }
 }

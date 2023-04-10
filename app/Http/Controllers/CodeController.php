@@ -55,7 +55,7 @@ class CodeController extends Controller
 
                 Cookie::queue('code', $code_web);
 
-                return redirect('dashboard');
+                return redirect('admin/dashboard');
             }
         }
         Session::flash('alert-danger', 'El código ingresado no es válido');
