@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\{
     MailSettingController,
     PostController,
     VerificationController,
+    VerificacionEliminarController,
 };
 use App\Http\Controllers\CodeUpdateController;
 
@@ -66,10 +67,16 @@ Route::namespace('App\Http\Controllers\Admin')->name('admin.')->prefix('admin')
         Route::resource('roles','RoleController');
         Route::resource('permissions','PermissionController');
         Route::resource('users','UserController');
-        Route::resource('posts','PostController');
+        Route::resource('soft','VerificacionEliminarController');
+        Route::resource('posts','PostController')->except(['edit']);
+        Route::get('/posts/{post}/verify-code', 'PostController@verifyCode')->name('posts.verify-code');
+        Route::get('/posts/{post}/edit', 'PostController@edit')->name('posts.edit')->middleware('updatemidelware');
+        Route::get('/posts/{post}/destruir', 'PostController@destruir')->name('posts.destruir');
         Route::resource('codes','VerificationController');
         Route::get('/verificar',[PostController::class, 'verificar'])->name('verificar');
         Route::post('/verificar',[PostController::class, 'guardarPeticion'])->name('pedirc');
+        Route::get('/verificareliminar',[PostController::class, 'verificarelim'])->name('verificareliminar');
+        Route::post('/verificareliminar',[PostController::class, 'guardarPeticionEliminar'])->name('pedireliminar');
 
         Route::get('/profile',[ProfileController::class,'index'])->name('profile');
         Route::put('/profile-update',[ProfileController::class,'update'])->name('profile.update');

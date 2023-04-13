@@ -19,27 +19,23 @@ class AdminSeeder extends Seeder
     {
         $admin = User::create([
             'name'=>'Admin',
-            'email'=>'20170023@uttcampus.edu.mx',
-            'password'=>bcrypt('123'),
-            'profile' => 'perfil.png'
+            'email'=>'alejandroguzman23221@gmail.com',
+            'password'=>bcrypt('123456789'),
+            'profile' => 'toto.jpg'
         ]);
 
         $supervisor = User::create([
             'name'=>'Supervisor',
-            'email'=>'alejandroguzman23221@gmail.com',
-            'password'=>bcrypt('123')
-        ]);
-
-        $supervisor = User::create([
-            'name'=>'Supervisor1',
             'email'=>'alejandrofirst21@outlook.com',
-            'password'=>bcrypt('123')
+            'password'=>bcrypt('123456789'),
+            'profile' => 'cofi.jpg'
         ]);
         
         $normal = User::create([
             'name'=>'miguel',
             'email'=>'miguelagl0927@gmail.com',
-            'password'=>bcrypt('123')
+            'password'=>bcrypt('123456789'),
+            'profile' => 'mike.jpg'
         ]);
 
         $admin_role = Role::create(['name' => 'admin']);
@@ -66,10 +62,12 @@ class AdminSeeder extends Seeder
         $permission = Permission::create(['name' => 'Permission create']);
         $permission = Permission::create(['name' => 'Permission delete']);
 
-        $permission = Permission::create(['name' => 'Mail access']);
-        $permission = Permission::create(['name' => 'Mail edit']);
+        //$permission = Permission::create(['name' => 'Mail access']);
+        //$permission = Permission::create(['name' => 'Mail edit']);
 
         $permission = Permission::create(['name' => 'Codes access']);
+
+        $permission = Permission::create(['name' => 'Codes eliminate']);
 
 
 
@@ -77,8 +75,8 @@ class AdminSeeder extends Seeder
         $supervisor->assignRole($supervisor_role);
         $normal->assignRole($normal_role);
 
-        $admin_role->givePermissionTo(Permission::all());
-        $supervisor_role->givePermissionTo(Permission::all());
+        $admin_role->givePermissionTo('Post access','Post edit','Post create','Post delete','Role access','Role edit','Role create','Role delete','User access','User edit','User delete','Permission access','Permission edit','Permission create','Permission delete','Codes eliminate');
+        $supervisor_role->givePermissionTo('Post access','Post edit','Post create','Post delete','Codes access');
 
         $normal_role->givePermissionTo('Post access','Post edit','Post create','Post delete');
     }

@@ -3,7 +3,7 @@
         <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-200">
             <div class="container mx-auto px-6 py-1 pb-16">
               <div class="bg-white shadow-md rounded my-6 p-5">
-                <form method="POST" action="{{ route('admin.posts.update',$post->id)}}">
+                <form method="POST" action="{{ route('admin.posts.update',$post->id)}}" enctype="multipart/form-data">
                   @csrf
                   @method('put')
                   <div class="flex flex-col space-y-2">
@@ -14,21 +14,25 @@
                 </div>
                 <div class="flex flex-col space-y-2">
                     <label for="title" class="text-gray-700 select-none font-medium">Precio</label>
-                    <input id="title" type="text" name="title" value="{{ old('title',$post->precio) }}"
+                    <input id="title" type="text" name="precio" value="{{ old('title',$post->precio) }}"
                       placeholder="Escribe el nombre del producto" class="px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-200"
                     />
                 </div>
                 <div class="flex flex-col space-y-2">
                     <label for="title" class="text-gray-700 select-none font-medium">Marca</label>
-                    <input id="title" type="text" name="title" value="{{ old('title',$post->marca) }}"
+                    <input id="title" type="text" name="marca" value="{{ old('title',$post->marca) }}"
                       placeholder="Escribe el nombre del producto" class="px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-200"
                     />
                 </div>
                 <div class="flex flex-col space-y-2">
                     <label for="title" class="text-gray-700 select-none font-medium">Imagen</label>
-                    <input id="title" type="text" name="title" value="{{ old('title',$post->marca) }}"
-                      placeholder="Escribe el nombre del producto" class="px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-200"
-                    />
+                    <img src="{{Storage::disk('do')->url($post->imagen_url)}}" width="20%" alt="...">
+                </div>
+                <input type="text" hidden name="imagenguardada" value="{{ old('title',$post->imagen_url) }}">
+                <div class="flex flex-col space-y-2">
+                    <label for="title" class="text-gray-700 select-none font-medium">NuevaImagen</label>
+                    <input class="px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-200"  type="file" name="image">
+                    
                 </div>
         
                 

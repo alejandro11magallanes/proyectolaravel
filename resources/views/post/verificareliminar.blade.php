@@ -3,7 +3,7 @@
         <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-200">
             <div class="container mx-auto px-6 py-1 pb-16">
               <h2>Ingresa el codigo de verificacion que te proporciono tu Administrador</h2>
-              <form action="{{ route('admin.posts.verify-code',$id) }}" method="GET" class="inline">
+              <form action="{{ route('admin.posts.destruir',$id) }}" method="GET" class="inline">
                         @csrf
                         <div class="flex flex-col space-y-2">
                         
@@ -15,7 +15,7 @@
                   <button type="submit" class="bg-blue-500 text-white font-bold px-5 py-1 rounded focus:outline-none shadow hover:bg-blue-500 transition-colors ">Verificar</button>
                 </div>
                 </form>
-                <form action="{{ route('admin.pedirc') }}" method="POST" class="inline">
+                <form action="{{ route('admin.pedireliminar') }}" method="POST" class="inline">
                         @csrf
                         
                 <div class="text-center mt-16 mb-16">
